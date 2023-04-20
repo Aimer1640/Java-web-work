@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.StudentMapper">
+<!--	2040706101 杨艾琳-->
+<!--	//添加学生-->
+	<insert id="registerStudent" parameterType="student">
+		insert into tb_student(student_id,student_name,major_id,dept_id,absence) values(#{studentId},#{studentName},#{majorId},#{deptId},#{absence})
+	</insert>
+<!--	//更新学生-->
+	<update id="updateStudent" parameterType="student">
+		update tb_student set student_name=#{studentName},major_id=#{majorId},dept_id=#{deptId},absence=#{absence} where student_id=#{studentId}
+	</update>
+
+	<!--	//登记学生缺勤-->
+	<update id="absenceStudent" parameterType="student">
+		update tb_student set absence=#{absence} where student_id=#{studentId}
+	</update>
+<!--	//删除学生-->
+	<delete id="deleteStudentById" parameterType="string">
+		delete from tb_student where student_id=#{studentId}
+	</delete>
+<!--	//根据id查询学生-->
+	<select id="findStudentById" parameterType="string" resultType="student">
+		select * from tb_student where student_id=#{studentId}
+	</select>
+<!--	//查询所有学生-->
+	<select id="findAllStudent" resultType="student">
+		select * from tb_student
+	</select>
+</mapper>

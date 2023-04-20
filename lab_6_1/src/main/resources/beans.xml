@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+      <!-- 定义目标类 -->
+    <bean id="personAction" class="com.example.action.PersonAction">
+	   	<property name="identityService" ref="identityService"></property>
+	</bean>
+	<bean id="identityService" class="com.example.service.impl.IdentityrServiceImpl"></bean>
+		<!-- 切面 定义通知 -->
+	<bean id="authAspect" class="com.example.aop.AuthAspect"></bean>
+	<!-- 2040706101 杨艾琳 -->
+	 <!-- AOP配置 -->
+	<aop:config>
+		<!-- 切入点 -->
+		<aop:pointcut id="pointCut" expression="execution(* com.example.service.*.*(..))"/>
+
+		<aop:aspect ref="authAspect">
+			<!-- 前置 后置通知 -->
+			<aop:before method="before" pointcut-ref="pointCut"></aop:before>
+			<aop:after method="after" pointcut-ref="pointCut"></aop:after>
+		</aop:aspect>
+	</aop:config>
+	
+	
+	
+</beans>

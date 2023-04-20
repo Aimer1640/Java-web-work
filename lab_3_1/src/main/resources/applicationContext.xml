@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <!--1.以Setter方式，注入系的信息：计算机系，编号为407-->
+    <!-- 2040706101 杨艾琳 -->
+    <bean id="dept" class="com.example.pojo.Dept">
+        <property name="deptId" value="407"></property>
+        <property name="deptname" value="计算机系"></property>
+        <!--注入List集合的专业信息-->
+        <property name="majors">
+            <list>
+                <ref bean="major1"></ref>
+                <ref bean="major2"></ref>
+            </list>
+
+        </property>
+      </bean>
+
+    <!--2.以构造器方式，注入专业信息-->
+    <!--专业代码：06，名称：计算机科学与技术专业，学费：26000-->
+    <bean id="major1" class="com.example.pojo.Major">
+        <constructor-arg name="majorId" value="06"></constructor-arg>
+        <constructor-arg name="majorName" value="计算机科学与技术"></constructor-arg>
+        <constructor-arg name="tuition" value="26000"></constructor-arg>
+        <property name="deptId" value="407"></property>
+         <!--注入Map集合的班级信息-->
+        <constructor-arg name="classs">
+            <map>
+                <entry key="c1" value-ref="c1"></entry>
+                <entry key="c2" value-ref="c2"></entry>
+<!--                -->
+<!--                <entry key="classId" value="1"></entry>-->
+<!--                <entry key="className" value="web1"></entry>-->
+<!--                <entry key="classSize" value="57"></entry>-->
+<!--                <entry key="classSurplus" value="56"></entry>-->
+<!--                <entry key="tutorId" value="000"></entry>-->
+<!--                <entry key="instructorId" value="001"></entry>-->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 2040706101 杨艾琳 -->
+    <bean id="major2" class="com.example.pojo.Major">
+        <constructor-arg name="majorId" value="07"/>
+        <constructor-arg name="majorName">
+            <value>物联网工程</value>
+        </constructor-arg>
+        <constructor-arg name="tuition" value="26000"/>
+        <property name="deptId" value="407"/>
+            <!--注入Map集合的班级信息-->
+        <constructor-arg name="classs">
+            <map>
+                <entry key="c3" value-ref="c3"></entry>
+<!--                <entry key="classId" value="1"></entry>-->
+<!--                <entry key="className" value="w1"></entry>-->
+<!--                <entry key="classSize" value="67"></entry>-->
+<!--                <entry key="classSurplus" value="64"></entry>-->
+<!--                <entry key="tutorId" value="000"></entry>-->
+<!--                <entry key="instructorId" value="001"></entry>-->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 2040706101 杨艾琳 -->
+    <!--4.两种方式混合使用，注入班级的信息-->
+    <bean id="c1" class="com.example.pojo.Class">
+    <!--（1）以Setter方式注入班级的编号、名称、人数和剩余人数信息-->
+        <property name="classId" value="1"></property>
+        <property name="className" value="web1"></property>
+        <property name="classSize" value="57"></property>
+        <property name="classSurplus" value="56"></property>
+    <!--（2）以对象引用方式注入班级所在系、专业、以及指导老师和辅导员信息-->
+<!--        <property name="dept" ref="dept"></property>-->
+<!--        <property name="major" ref="major1"></property>-->
+        <!-- 2040706101 杨艾琳 -->
+        <!--注入Properties集合的指导老师和辅导员信息-->
+        <property name="teacherProp">
+            <props >
+                <prop key="tutorId">000</prop>
+                <prop key="tutorName">teacher1</prop>
+                <prop key="instructorId">001</prop>
+                <prop key="instructorName">assistant1</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="c2" class="com.example.pojo.Class">
+        <!--（1）以Setter方式注入班级的编号、名称、人数和剩余人数信息-->
+        <property name="classId" value="2"></property>
+        <property name="className" value="web2"></property>
+        <property name="classSize" value="43"></property>
+        <property name="classSurplus" value="36"></property>
+        <!--（2）以对象引用方式注入班级所在系、专业、以及指导老师和辅导员信息-->
+<!--        <property name="dept" ref="dept"></property>-->
+<!--        <property name="major" ref="major1"></property>-->
+        <!-- 2040706101 杨艾琳 -->
+        <!--注入Properties集合的指导老师和辅导员信息-->
+        <property name="teacherProp">
+            <props >
+                <prop key="tutorId">003</prop>
+                <prop key="tutorName">teacher2</prop>
+                <prop key="instructorId">004</prop>
+                <prop key="instructorName">assistant2</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="c3" class="com.example.pojo.Class">
+        <!--（1）以Setter方式注入班级的编号、名称、人数和剩余人数信息-->
+        <property name="classId" value="3"></property>
+        <property name="className" value="w1"></property>
+        <property name="classSize" value="45"></property>
+        <property name="classSurplus" value="30"></property>
+        <!--（2）以对象引用方式注入班级所在系、专业、以及指导老师和辅导员信息-->
+<!--        <property name="dept" ref="dept"></property>-->
+<!--        <property name="major" ref="major2"></property>-->
+        <!-- 2040706101 杨艾琳 -->
+        <!--注入Properties集合的指导老师和辅导员信息-->
+        <property name="teacherProp">
+            <props >
+                <prop key="tutorId">005</prop>
+                <prop key="tutorName">teacher3</prop>
+                <prop key="instructorId">006</prop>
+                <prop key="instructorName">assistant3</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

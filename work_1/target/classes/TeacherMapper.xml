@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.TeacherMapper">
+<!--	2040706101 杨艾琳-->
+<!--	//添加教师-->
+	<insert id="registerTeacher" parameterType="teacher">
+		insert into tb_teacher(teacher_id,teacher_name,major_id,dept_id,role) values(#{teacherId},#{teacherName},#{majorId},#{deptId},#{role})
+	</insert>
+<!--	//更新教师-->
+	<update id="updateTeacher" parameterType="teacher">
+		update tb_teacher set teacher_name=#{teacherName},major_id=#{majorId},dept_id=#{deptId},role=#{role} where teacher_id=#{teacherId}
+	</update>
+<!--	//删除教师-->
+	<delete id="deleteTeacherById" parameterType="string">
+		delete from tb_teacher where teacher_id=#{teacherId}
+	</delete>
+<!--	//根据id查询教师-->
+	<select id="findTeacherById" parameterType="string" resultType="teacher">
+		select * from tb_teacher where teacher_id=#{teacherId}
+	</select>
+<!--	//查询所有教师-->
+	<select id="findAllTeacher" resultType="teacher">
+		select * from tb_teacher
+	</select>
+</mapper>

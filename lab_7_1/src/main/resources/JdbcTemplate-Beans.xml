@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!--        2040706101 杨艾琳-->
+        <!-- 0. PropertyPlaceholderConfigurer方式引入数据库配置的properties文件 -->
+        <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+                <property name="location">
+                        <value>classpath:jdbc.properties</value>
+                </property>
+        </bean>
+	<!-- 1.配置数据源 -->
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+                <property name="driverClassName" value="${jdbc.driver}"></property>
+                <property name="url" value="${jdbc.url}"></property>
+                <property name="username" value="${jdbc.username}"></property>
+                <property name="password" value="${jdbc.password}"></property>
+        </bean>
+	<!-- 2.配置Jdbc模板 -->
+        <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+                <property name="dataSource" ref="dataSource"></property>
+        </bean>
+	<!--3.将jdbcTemplate对象注入到TeacherDao实现类中 -->
+        <bean id="teacherDao" class="com.example.dao.impl.TeacherDaoImpl">
+                <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+        </bean>
+</beans>

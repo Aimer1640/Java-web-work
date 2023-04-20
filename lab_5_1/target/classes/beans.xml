@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+      <!-- 定义目标类 -->
+<!--	2040706101 杨艾琳-->
+	<bean id="teacherDao" class="com.example.dao.impl.TeacherDaoImpl"></bean>
+	<!-- 切面类 -->
+	<bean id="myAspect" class="com.example.aspect.MyAspect"></bean>
+    <!-- spring代理工厂定义代理对象-->
+	<bean id="teacherDaoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!--代理实现的接口-->
+		<property name="proxyInterfaces" value="com.example.dao.TeacherDao"></property>
+		<!--指定目标对象-->
+		<property name="target" ref="teacherDao"></property>
+		<!--指定切面 植入增强方法-->
+		<property name="interceptorNames" value="myAspect"></property>
+		<!--代理方式-->
+		<property name="proxyTargetClass" value="true"></property>
+	</bean>
+	
+	
+	
+	
+</beans>

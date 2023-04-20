@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--2040706101 杨艾琳-->
+    <!--1.注入系的信息：计算机系，编号为407-->
+    <bean id="dept" class="com.example.pojo.Dept">
+        <property name="deptname" value="计算机系"></property>
+        <property name="deptId" value="407"></property>
+        <constructor-arg name="classes">
+            <ref bean="classes"></ref>
+        </constructor-arg>
+        <constructor-arg name="major">
+            <ref bean="major"></ref>
+        </constructor-arg>
+        <constructor-arg name="teacher">
+            <ref bean="teacher"></ref>
+        </constructor-arg>
+    </bean>
+    <!--2.注入专业信息-->
+    <!--专业代码：06，名称：计算机科学与技术专业，学费：26000-->
+    <bean id="major" class="com.example.pojo.Major">
+        <property name="majorId" value="06"></property>
+        <property name="majorName" value="计算机科学与技术"></property>
+        <property name="tuition" value="26000"></property>
+    </bean>
+    <!--2040706101 杨艾琳-->
+    <!--3.1 注入学习导师的信息，role==0-->
+    <bean id="teacher" class="com.example.pojo.Teacher">
+        <property name="role" value="0"></property>
+    </bean>
+    <!--3.2 注入辅导员的信息，role==1-->
+    <bean id="teacher2" class="com.example.pojo.Teacher">
+        <property name="role" value="1"></property>
+    </bean>
+    <!--4.注入本班级的信息-->
+    <bean id="classes" class="com.example.pojo.Classes">
+        <property name="classId" value="1"></property>
+        <property name="className" value="20web1"></property>
+    </bean>
+</beans>

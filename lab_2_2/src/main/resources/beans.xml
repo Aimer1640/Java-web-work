@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!--2040706101 杨艾琳-->
+	<!-- 配置一个singleton Bean实例 -->
+	<bean id="user1" class="com.example.pojo.User" scope="singleton"></bean>
+
+	<!-- 配置一个prototype Bean实例 -->
+	<bean id="user2" class="com.example.pojo.User" scope="prototype"></bean>
+
+	<!-- 配置一个request Bean实例 -->
+	<bean id="user3" class="com.example.pojo.User" scope="request"></bean>
+
+</beans>

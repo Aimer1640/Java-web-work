@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<!-- 2040706101 杨艾琳 -->
+	<!-- 定义目标类 -->
+	<bean id="studentService" class="com.example.spring.service.impl.StudentServiceImpl" />
+	<!-- 配置4个通知类 Bean-->
+	<bean id="logBefore" class="com.example.spring.LogBefore"/>
+	<bean id="logAfterReturning" class="com.example.spring.LogAfterReturningAdvice"/>
+	<bean id="logAround" class="com.example.spring.LogAround"/>
+	<bean id="logThrow" class="com.example.spring.LogThrow"/>
+	<!-- 2040706101 杨艾琳 -->
+	<!-- 定义4个增强处理  -->
+	<aop:config>
+		<aop:pointcut id="myCut" expression="execution(* com.example.spring.service.*.*(..))"/>
+		<aop:advisor advice-ref="logBefore" pointcut-ref="myCut"/>
+		<aop:advisor advice-ref="logAfterReturning" pointcut-ref="myCut"/>
+		<aop:advisor advice-ref="logAround" pointcut-ref="myCut"/>
+		<aop:advisor advice-ref="logThrow" pointcut-ref="myCut"/>
+	</aop:config>
+
+</beans>

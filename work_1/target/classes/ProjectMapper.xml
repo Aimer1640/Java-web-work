@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ProjectMapper">
+<!--	2040706101 杨艾琳-->
+<!--	//发布作业-->
+	<insert id="distributeProject" parameterType="project">
+		insert into tb_project(project_id,project_name,project_demand,project_teacher,project_state,project_file) values(#{projectId},#{projectName},#{projectDemand},#{projectTeacher},#{projectState},#{projectFile})
+	</insert>
+<!--	//更新作业信息-->
+	<update id="updateProject" parameterType="project">
+		update tb_project set project_name=#{projectName},project_demand=#{projectDemand},project_teacher=#{projectTeacher},project_state=#{projectState},project_file=#{projectFile} where project_id=#{projectId}
+	</update>
+<!--	//删除作业-->
+	<delete id="deleteProjectById" parameterType="string">
+		delete from tb_project where project_id=#{projectId}
+	</delete>
+<!--	//根据id查询作业-->
+	<select id="findProjectById" parameterType="string" resultType="project">
+		select * from tb_project where project_id=#{projectId}
+	</select>
+<!--	//查询所有作业-->
+	<select id="findAllProject" resultType="project">
+		select * from tb_project
+	</select>
+</mapper>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- 引入命名空间及schema路径-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 	       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 0加载properties文件 -->
+
+	<!-- 1 配置数据源，读取properties文件信息 -->
+
+
+	<!-- 2 配置jdbc模板 -->
+
+
+	<!-- 3 配置组件扫描：扫描dao及service层 -->
+
+
+	<!-- #4.1 事务管理器 -->
+
+
+	<!-- #4.2注册事务管理驱动 -->
+
+
+</beans>
