@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="dbcp/dbcp.properties"></context:property-placeholder>
+    <!-- 组件扫描 -->
+    <context:component-scan base-package="com.example.dao"></context:component-scan>
+    <!-- 2040706101 杨艾琳 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+       <property name="driverClassName" value="${driverClassName}"></property>
+       <property name="url" value="${url}"></property>
+       <property name="username" value="${user}"></property>
+       <property name="password" value="${password}"></property>
+       <property name="initialSize" value="${initialSize}"></property>
+       <property name="maxTotal" value="${maxTotal}"></property>
+       <property name="maxIdle" value="${maxIdle}"></property>
+       <property name="minIdle" value="${minIdle}"></property>
+       <property name="maxWaitMillis" value="${maxWaitMillis}"></property>
+    </bean>
+    <!-- 数据模板 注入数据源 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+</beans>

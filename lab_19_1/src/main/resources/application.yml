@@ -1,0 +1,12 @@
+jiaowuyuan:
+  roleId: 1
+  role: 教务员
+
+stu:
+  ticketNumber: 2040706101
+  idCard: 123456789000000
+  name: 杨艾琳
+  sex: 0
+  age: 20
+  birthday: 2002/04/12
+  nation: 汉族

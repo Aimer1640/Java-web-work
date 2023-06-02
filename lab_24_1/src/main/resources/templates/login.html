@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmls:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/pages.css}">
+
+</head>
+<body class="login-page">
+
+<!-- Start: Main -->
+<div id="main">
+    <div class="container">
+        <div class="row">
+            <div id="page-logo"></div>
+        </div>
+        <div class="row">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title" ><h2 th:text="#{login.title}"></h2></div>
+                </div>
+
+                <form th:action="@{/login}" class="cmxform" id="altForm" method="post">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="input-group"> <span class="input-group-addon" th:text="#{login.account}"></span>
+                                <input type="text" name="account" class="form-control" autocomplete="off"  th:placeholder="#{login.account}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group"> <span class="input-group-addon" th:text="#{login.password}"></span>
+                                <input type="password" name="password" class="form-control"  th:placeholder="#{login.password}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group"> <span class="input-group-addon" th:text="#{login.role}"></span>
+                                <select name="roleId"  style="height:34px;">
+                                    <option value="0" th:text="#{login.role0}"></option>
+                                    <option value="1" th:text="#{login.role1}"></option>
+                                    <option value="5" th:text="#{login.role5}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="font-size:18px;color: #fe561f">
+                            <span th:text="${msg}"></span>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer"> <span class="panel-title-sm pull-left" style="padding-top: 7px;"></span>
+                        <div class="form-group margin-bottom-none">
+                            <input type="hidden" value="login" name="action-mark" />
+                            <button class="btn btn-primary pull-center" type="submit" th:text="#{login.submit}" />
+                            <button class="btn btn-primary pull-center" type="reset" th:text="#{login.reset}" />
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </form>
+                <a th:href="@{/login(l='zn_CN')}">中文</a>
+                <a th:href="@{/login(l='en_US')}">English</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End: Main -->
+
+</body>
+
+</html>

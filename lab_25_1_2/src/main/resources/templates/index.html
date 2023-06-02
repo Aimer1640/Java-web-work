@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统首页</title>
+</head>
+<body>
+<h2>系统首页</h2>
+<aside id="sidebar" class="affix">
+    <div id="sidebar-search"></div>
+    <div id="sidebar-menu">
+        <ul class="nav sidebar-nav">
+            <li><a href="${basePath}/officer/toOfficer"><span
+                    class="glyphicons glyphicon-home"></span><span
+                    class="sidebar-title">教务员管理主页</span></a></li>
+            <li><a href="news_list.html"><span
+                    class="glyphicons glyphicon-file"></span><span
+                    class="sidebar-title">系别管理</span></a></li>
+            <li><a href="${basePath}/officer/findAllMajors"><span
+                    class="glyphicons glyphicon-paperclip"></span><span
+                    class="sidebar-title">专业管理</span></a></li>
+            <li><a href="${basePath}/officer/findAllClasses"><span
+                    class="glyphicons glyphicon-credit-card"></span><span
+                    class="sidebar-title">班级管理</span></a></li>
+            <li><a href="${basePath}/toAllUsers"><span
+                    class="glyphicons glyphicon-paperclip"></span><span
+                    class="sidebar-title">用户管理</span></a></li>
+            <li><a href="${basePath}/toAllUsers"><span
+                    class="glyphicons glyphicon-paperclip"></span><span
+                    class="sidebar-title">新生证件审核</span></a></li>
+        </ul>
+    </div>
+</aside>
+
+<section id="content">
+    <div id="topbar" class="affix">
+        <ol class="breadcrumb">
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+        </ol>
+    </div>
+    <div class="container">
+
+
+        <div class="col-md-11">
+            <div id="docs-content">
+                <h2 class="page-header margin-top-none">个人信息</h2>
+                <table class="table">
+                    <tr>
+                        <td colspan="2">您好,101</td>
+                    </tr>
+                    <tr>
+                        <td width="120">最后登录时间:</td>
+                        <td>2023-05-22 15：05</td>
+                    </tr>
+                    <tr>
+                        <td>最后登录IP:</td>
+                        <td>127.0.0.1</td>
+                    </tr>
+                </table>
+
+                <h2 class="page-header margin-top-none">系统信息</h2>
+                <table class="table">
+                    <tr>
+                        <td width="100">操作系统：</td>
+                        <td>Windows 10</td>
+                    </tr>
+                    <tr>
+                        <td>IDEA版本:</td>
+                        <td>2020.2.1</td>
+                    </tr>
+                    <tr>
+                        <td>MySQL 版本:</td>
+                        <td>5.1.49</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<link href="header.html">
+<link href="content.html">
+<link href="sidebar.html">
+</body>
+</html>

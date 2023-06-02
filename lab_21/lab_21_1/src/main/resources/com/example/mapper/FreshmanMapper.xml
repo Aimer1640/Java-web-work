@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.FreshmanMapper">
+    <!--2040706101 杨艾琳-->
+    <insert id="addFreshman" parameterType="freshman">
+        insert into tb_freshman(ticketnumber,id_card,name,sex,age,birthday) values(#{ticketNumber},#{idCard},#{name},#{sex},#{age},#{birthday})
+    </insert>
+    <update id="updateFreshman" parameterType="freshman">
+        update tb_freshman set name=#{name},sex=#{sex},age=#{age} where ticketnumber=#{ticketNumber}
+    </update>
+    <delete id="deleteFreshman" parameterType="freshman">
+        delete from tb_freshman where ticketnumber=#{ticketNumber}
+    </delete>
+    <!--1.使用动态SQL语句if+where实现对新生的查询操作-->
+    <select id="findFreshmanByConditions1" resultType="freshman">
+        select * from tb_freshman
+        <trim prefix="where" prefixOverrides="and|or">
+        <if test="ticketNumber!=null and ticketNumber!=''">
+        and ticketnumber=#{ticketNumber}
+        </if>
+        <if test="idCard!=null and idCard!=''">
+            and id_card=#{idCard}
+        </if>
+        <if test="stuNo!=null and stuNo!=''">
+            and stuno=#{stuNo}
+        </if>
+        </trim>
+    </select>
+    <!--<resultMap id="f" type="freshman">
+        <id column="ticketnumber" property="ticketNumber"/>
+        <result column="id_card" property="idCard"/>
+        <result column="stuno" property="stuNo"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="nation" property="nation"/>
+        <result column="politic" property="politic"/>
+        <result column="birthday" property="birthday" jdbcType="DATE"/>
+        <result column="status" property="status"/>
+        <result column="dorm_id" property="dormId"/>
+        <result column="dept_id" property="deptId"/>
+        <result column="user_id" property="userId"/>
+        <result column="class_id" property="classId"/>
+        <result column="role_id" property="roleId"/>
+        <result column="major_id" property="majorId"/>
+        <result column="registerTime" property="registerTime"/>
+ </resultMap>-->
+
+    <!--2.使用动态SQL中的<choose>、<when>、<otherwise>，多条件查询新生信息-->
+    <select id="findFreshmanByConditions2" resultType="freshman">
+        select * from tb_freshman where 1=1
+        <choose>
+        <when test="ticketNumber!=null and ticketNumber!=''">
+            and ticketnumber=#{ticketNumber}
+        </when>
+        <when test="idCard!=null and idCard!=''">
+            and id_card=#{idCard}
+        </when>
+        <when test="stuNo!=null and stuNo!=''">
+            and stuno=#{stuno}
+        </when>
+        <otherwise>and status !=0</otherwise>
+        </choose>
+    </select>
+
+    <!--3.（1）使用动态SQL中的<foreach>元素遍历指定系的新生信息 array -->
+    <select id="findFreshmanByDeptIdsAsArray"  parameterType="java.util.ArrayList"
+            resultType="freshman">
+        select * from tb_freshman where dept_id in
+        <foreach item="id" index="index" collection="array" open="("
+                 separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <!--3.（2）使用动态SQL中的<foreach>元素遍历指定系的新生信息  list -->
+    <select id="findFreshmanByDeptIdsAsList" parameterType="java.util.ArrayList"
+            resultType="freshman">
+        select * from tb_freshman where dept_id in
+        <foreach item="id" index="index" collection="list" open="("
+                 separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <!--3.（3）使用动态SQL中的<foreach>元素遍历指定专业的新生信息  list -->
+    <select id="findFreshmanByDeptIdsAsList1" parameterType="java.util.HashMap"
+            resultType="freshman">
+        select * from tb_freshman where major_id in
+        <foreach item="id" index="index" collection="list" open="("
+                 separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+</mapper>

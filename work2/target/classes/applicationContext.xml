@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/mvc
+	https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<context:component-scan base-package="com.example"/>
+	<!--2040706101 杨艾琳-->
+	<!-- 数据源配置 -->
+	<context:property-placeholder location="classpath:druid.properties"/>
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<!-- 数据源驱动类可不写，Druid默认会自动根据URL识别DriverClass -->
+		<property name="driverClassName" value="${driverClassName}" />
+		<!-- 基本属性 url、user、password -->
+		<property name="url" value="${url}"/>
+		<property name="username" value="${name}"/>
+		<property name="password" value="${password}"/>
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="${initialSize}"/>
+		<!-- 连接池最大使用连接数量 -->
+		<property name="maxActive" value="${maxActive}"/>
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="1"/>
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="${maxWait}"/>
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+
+	</bean>
+
+	<!-- 配置MyBatis工厂 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
+
+	<!-- 配置Mapper扫描器 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.example.mapper"></property>
+	</bean>
+
+</beans>
+
+
+       
+    
+
