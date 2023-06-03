@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改作业信息</title>
+    <!-- Core CSS  -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/glyphicons.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/pages.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/plugins.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}">
+
+    <!-- Boxed-Layout CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/boxed.css}">
+
+
+    <!-- Core Javascript - via CDN -->
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script>
+
+    </script>
+</head>
+
+<body>
+<div id="main">
+
+    <section id="content">
+        <div id="topbar" class="affix">
+            <ol class="breadcrumb">
+                <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+                <li class="active">编辑作业</li>
+            </ol>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-10 col-lg-11 center-column">
+                    <form th:action="@{/coursework/updateCourseWork}" enctype="multipart/form-data" method="post" class="cmxform">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">编辑作业</div>
+                                <div class="panel-btns pull-right margin-left">
+                                    <a th:href="@{/coursework/findCourseWorkByuploadId}" class="btn btn-default btn-gradient dropdown-toggle"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="input-group-addon">提交ID</span>
+                                            <input type="text" name="uploadId" readonly th:value="${c.uploadId}" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="input-group-addon">作业ID</span>
+                                            <input type="text" name="projectId" readonly th:value="${c.projectId}"  class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="input-group-addon">学生ID</span>
+                                            <input type="text" name="studentId" readonly th:value="${c.studentId}"  class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="input-group-addon">作业文件</span>
+
+                                            <input type="file" name=file th:value="${c?.uploadFile}" class="form-control">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="提交" class="submit btn btn-blue">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End: Content -->
+</div>
+
+</body>
+</html>
