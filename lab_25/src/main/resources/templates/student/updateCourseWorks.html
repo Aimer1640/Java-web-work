@@ -36,7 +36,7 @@
 
             <div class="row">
                 <div class="col-md-10 col-lg-11 center-column">
-                    <form th:action="@{/coursework/updateCourseWork}" method="post" class="cmxform">
+                    <form th:action="@{/coursework/updateCourseWork}" enctype="multipart/form-data" method="post" class="cmxform">
                         <div class="panel">
                             <div class="panel-heading">
                                 <div class="panel-title">编辑作业</div>
@@ -65,33 +65,11 @@
 
                                     <div class="form-group">
                                         <div class="input-group"> <span class="input-group-addon">作业文件</span>
-                                            <input type="text" name="uploadFile" th:value="${c.uploadFile}"  class="form-control">
-                                            <div>
-<!--                                                <%&#45;&#45;                                        上传人：<input id="name" type="text" name="name" /><br />&#45;&#45;%>-->
-<!--                                                请上传作业文件：<input id="file" type="file" name="uploadFile"-->
-<!--                                                               multiple="multiple" class="form-control"/><br />-->
-<!--                                                <%&#45;&#45;                                        <input type="submit" value="上传" />&#45;&#45;%>-->
-                                            </div>
+
+                                            <input type="file" name=file th:value="${c?.uploadFile}" class="form-control">
                                         </div>
+
                                     </div>
-
-
-
-<!--                                    <%&#45;&#45;                                    <div class="form-group">&#45;&#45;%>-->
-<!--                                    <%&#45;&#45;                                        <div class="input-group"> <span class="input-group-addon">辅导员</span>&#45;&#45;%>-->
-<!--                                        <%&#45;&#45;                                            <input type="text" name="instructorId" value="${c.instructorId}" class="form-control">&#45;&#45;%>-->
-<!--                                        <%&#45;&#45;                                        </div>&#45;&#45;%>-->
-<!--                                    <%&#45;&#45;                                    </div>&#45;&#45;%>-->
-<!--                                    <%&#45;&#45;                                    <div class="form-group">&#45;&#45;%>-->
-<!--                                    <%&#45;&#45;                                        <div class="input-group"><span class="input-group-addon">备注</span>&#45;&#45;%>-->
-<!--                                        <%&#45;&#45;                                            <input type="text" name="bz" value="${c.bz}" class="form-control">&#45;&#45;%>-->
-<!--                                        <%&#45;&#45;                                        </div>&#45;&#45;%>-->
-<!--                                    <%&#45;&#45;                                    </div>&#45;&#45;%>-->
-                                </div>
-<!--                                <%&#45;&#45;<div class="form-group col-md-12">-->
-<!--                                <textarea style="width:100%;height:150px;"></textarea>-->
-<!--                            </div>&#45;&#45;%>-->
-<!--                                <div class="col-md-7">-->
                                     <div class="form-group">
                                         <input type="submit" value="提交" class="submit btn btn-blue">
                                     </div>

@@ -48,7 +48,7 @@
 
             <div class="row">
                 <div class="col-md-10 col-lg-11 center-column">
-                    <form th:action="@{/project/addProject}" method="post" class="cmxform">
+                    <form th:action="@{/project/addProject}" enctype="multipart/form-data" method="post" class="cmxform">
                         <div class="panel">
                             <div class="panel-heading">
                                 <div class="panel-title">发布作业</div>
@@ -88,11 +88,10 @@
 
                                     <div class="form-group">
                                         <div class="input-group"> <span class="input-group-addon">作业文件</span>
-                                            <input type="text" name="projectFile" th:value="${p?.projectFile}"  class="form-control">
-                                            <div>
 
-                                            </div>
+                                            <input type="file" name=file th:value="${p?.projectFile}" class="form-control">
                                         </div>
+
                                     </div>
 
                                 </div>

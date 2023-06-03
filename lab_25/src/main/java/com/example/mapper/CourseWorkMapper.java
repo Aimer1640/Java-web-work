@@ -11,7 +11,7 @@ public interface CourseWorkMapper {
     public int uploadWork(Coursework coursework);
 
     //修改已提交作业信息
-    @Update("update tb_coursework set upload_file=#{uploadFile} where upload_id=#{uploadId}")
+    @Update("update tb_coursework set upload_file=#{uploadFile},state=#{state} where upload_id=#{uploadId}")
     public int updateWork(Coursework coursework);
 
     //撤回已提交的作业

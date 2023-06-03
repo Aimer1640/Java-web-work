@@ -63,8 +63,10 @@
                             <td th:text="${p.projectDemand}"></td>
                             <td th:text="${p.projectTeacher}"></td>
                             <td th:text="${p.projectState}"></td>
-                            <td th:text="${p.projectFile}"></td>
+                            <td>
 
+                                <a th:href="@{/project/download(filename=${p.projectFile})}" th:text="${p.projectFile}"></a>
+                            </td>
                         <td>
                             <a th:href="@{/project/findProjectByProjectId(projectId=${p.projectId})}">修改</a>
                             <a onclick="return confirm('确定要删除吗？');" th:href="@{/project/deleteProjectById(projectId=${p.projectId})}">删除</a>

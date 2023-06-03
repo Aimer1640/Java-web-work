@@ -88,9 +88,34 @@ public class CourseWorkController {
     }
 
     @RequestMapping("/updateCourseWork")
-    public String updateCourseWork(Coursework c){
-        System.out.println("coursework"+c);
+    public String updateCourseWork(Coursework c,MultipartFile file,HttpSession session, HttpServletRequest request){
+        System.out.println("uploadFile:"+file);
+        String dirPath=request.getServletContext().getRealPath("/upload/");
+        File filePath=new File(dirPath);
+        // 指定上传文件本地存储目录，不存在需要提前创建
+        if (!filePath.exists()){
+            filePath.mkdirs();
+        }
+        //上传文件
+        String originalFileName=file.getOriginalFilename();
+//        System.out.println("name:"+originalFileName);
+
+        //UUID重命名上传文件名
+//        String newFileName= UUID.randomUUID()+"_"+originalFileName;
+
+        try {
+            file.transferTo(new File(dirPath+originalFileName));
+        }
+        catch (Exception e) {
+            return "error";
+        }
+        c.setUploadFile(originalFileName);
+        c.setState("2");
+        System.out.println("name:"+originalFileName);
+
+        System.out.println("coursework:"+c);
         int rows=courseWorkMapper.updateWork(c);
+        System.out.println(c.getState());
         return "redirect:/coursework/findAllCourseWork";
     }
 
@@ -133,30 +158,5 @@ public class CourseWorkController {
         //火狐等其它浏览器统一为ISO-8859-1编码显示
         return new String(filename.getBytes("UTF-8"), "ISO-8859-1");
     }
-
-
-//    @RequestMapping("/upload")
-//    public String uploadFile(MultipartFile uploadFile,HttpSession session, HttpServletRequest request){
-//        String dirPath=request.getServletContext().getRealPath("/upload/");
-//        File filePath=new File(dirPath);
-//        // 指定上传文件本地存储目录，不存在需要提前创建
-//        if (!filePath.exists()){
-//            filePath.mkdirs();
-//        }
-//        //上传文件
-//        String originalFileName=uploadFile.getOriginalFilename();
-//
-//        //UUID重命名上传文件名
-//        String newFileName= UUID.randomUUID()+"_"+originalFileName;
-//
-//        try {
-//            uploadFile.transferTo(new File(dirPath+newFileName));
-//        }
-//        catch (Exception e) {
-//            return "error";
-//        }
-//        return "redirect:/coursework/findAllCourseWork";
-//    }
-//
 
 }
