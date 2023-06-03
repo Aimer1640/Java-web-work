@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmls:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>后台管理界面</title>
+    <meta name="description" content="这是后台管理主页">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+
+    <link rel="icon" type="image/png" th:href="@{../img/lysf.ico}">
+    <link rel="stylesheet" th:href="@{/css/amazeui.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/pagination.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+
+<body style="overflow:hidden;" >
+
+<div id="ref_page" style="height: 500px;">
+    <div class="teacher_search_title am-panel am-panel-default">
+        <div class="am-panel-bd">
+            <div class="am-cf">
+                <div class=" am-fl"><span class="tpl-content-page-title">学生列表</span></div>
+                <div class="am-fr" style="width: 180px;">
+                    <div class="am-input-group am-input-group-sm">
+
+            <span class="am-input-group-btn" style="width: 30%;">
+				        <a th:href="@{/student/addStudent}"><button id="searchTeacher" class="am-btn am-btn-default" type="button">添加</button></a>
+			</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="teacher_search_title am-panel am-panel-default">
+        <div class="am-panel am-panel-default">
+            <div class="am-panel-bd am-scrollable-horizontal">
+                <table class="am-table am-table-centered am-table-striped am-table-hover">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>学生学号</th>
+                        <th>学生姓名</th>
+                        <th>专业ID</th>
+                        <th>系别ID</th>
+                        <th>缺勤次数</th>
+
+                        <th>操作</th>
+                    </tr>
+
+                    </thead>
+                    <!-- 添加分页链接 -->
+                    <!-- 2040706101_杨艾琳 -->
+
+                    <tbody id="chooseBody">
+                    <tr th:each ="stu,iterStat:${studentList}">
+                        <form name='form' action='showUpdateInfoServlet'>
+                            <input type="hidden" name="id" value="${stu.studentId}" />
+                            <td th:text="${iterStat.index+1}">index</td>
+                            <td th:text="${stu.studentId}"></td>
+                            <td th:text="${stu.studentName}"></td>
+                            <td th:text="${stu.majorId }"></td>
+                            <td th:text="${stu.deptId}"></td>
+                            <td th:text="${stu.absence}"></td>
+
+                        <td><a th:href="@{/student/findStudentByStudentId(studentId=${stu.studentId})}">修改</a>
+                            <a onclick="return confirm('确定要删除吗？');" th:href="@{/student/deleteStudentById(studentId=${stu.studentId})}">删除</a>
+                        </td>
+                    </form>
+                    </tr>
+<!--                    <c:forEach items="${studentList}" var="stu" varStatus="s">-->
+<!--                        -->
+
+<!--                    </c:forEach>-->
+                    </tbody>
+
+                </table>
+            </div>
+            <footer class="am-panel-footer" style="height: 50px;">
+                <div class="am-fr">
+                    <p align="center">
+                        <a href="showOrderServlet?pageIndex=1">首页</a>
+                        <c:if test="${currentPageIndex!=1}">
+                            <a href="showOrderServlet?pageIndex=${currentPageIndex-1}">上一页</a>
+                        </c:if>
+                        <c:if test="${currentPageIndex!=pageCount}">
+                            <a href="showOrderServlet?pageIndex=${currentPageIndex+1}">下一页</a>
+                        </c:if>
+                        <a href="showOrderServlet?pageIndex=${pageCount}">尾页</a>
+                        每页显示记录数是<font color="blue">${countPerPage}</font>条；
+                        当前页是第<font color="blue">${currentPageIndex}</font>页；
+                        总页数是<font color="blue">${pageCount}</font>.
+
+                    </p>
+                    <div id="news-Pagination-1"></div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
