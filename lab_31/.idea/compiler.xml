@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="lab_31" />
+        <module name="lab_31_Sender" />
+        <module name="Receiver2" />
+        <module name="Receiver1" />
+        <module name="TopicsReceiver2" />
+        <module name="TopicsReceiver1" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="lab30_Receiver1" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Receiver1" options="-parameters" />
+      <module name="Receiver2" options="-parameters" />
+      <module name="TopicsReceiver1" options="-parameters" />
+      <module name="TopicsReceiver2" options="-parameters" />
+      <module name="lab30_Receiver1" options="-parameters" />
+      <module name="lab_31_Sender" options="-parameters" />
+    </option>
+  </component>
+</project>
