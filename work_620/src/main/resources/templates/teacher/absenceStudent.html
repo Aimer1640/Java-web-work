@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmls:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改班级信息</title>
+    <!-- Core CSS  -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/glyphicons.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/pages.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/plugins.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}">
+
+    <!-- Boxed-Layout CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/boxed.css}">
+
+
+    <!-- Core Javascript - via CDN -->
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+<!--    <script>-->
+
+<!--        <%&#45;&#45;        $.ajax({&#45;&#45;%>-->
+<!--            <%&#45;&#45;            url: "${baseurl}/findMajorByDeptId?deptId=407",&#45;&#45;%>-->
+<!--        <%&#45;&#45;            type: "post",&#45;&#45;%>-->
+<!--        <%&#45;&#45;            //定义回调响应的数据格式为JSON字符串,该属性可以省略&#45;&#45;%>-->
+<!--            <%&#45;&#45;            dataType: "json",&#45;&#45;%>-->
+<!--        <%&#45;&#45;            //成功响应的结果&#45;&#45;%>-->
+<!--            <%&#45;&#45;            success: function (result) {&#45;&#45;%>-->
+<!--        <%&#45;&#45;                $.each(result, function (i, item) {&#45;&#45;%>-->
+<!--        <%&#45;&#45;                    $("#majorId").append("<option value=" + item.majorId + ">" + item.majorName + "</option>");&#45;&#45;%>-->
+<!--        <%&#45;&#45;                })&#45;&#45;%>-->
+<!--        <%&#45;&#45;            }&#45;&#45;%>-->
+<!--        <%&#45;&#45;        });&#45;&#45;%>-->
+
+<!--        <%&#45;&#45;        $.ajax({&#45;&#45;%>-->
+<!--            <%&#45;&#45;            url: "${basePath}/findTeacherByRole",&#45;&#45;%>-->
+<!--        <%&#45;&#45;            type: "post",&#45;&#45;%>-->
+<!--        <%&#45;&#45;            //定义回调响应的数据格式为JSON字符串,该属性可以省略&#45;&#45;%>-->
+<!--            <%&#45;&#45;            dataType: "json",&#45;&#45;%>-->
+<!--        <%&#45;&#45;            //成功响应的结果&#45;&#45;%>-->
+<!--            <%&#45;&#45;            success: function (result) {&#45;&#45;%>-->
+<!--        <%&#45;&#45;                $.each(result.tutors,function (i,item) {&#45;&#45;%>-->
+<!--        <%&#45;&#45;                    $("#tutorId").append("<option value="+item.jobId+">"+item.teacherName+"</option>");&#45;&#45;%>-->
+<!--        <%&#45;&#45;                })&#45;&#45;%>-->
+<!--        <%&#45;&#45;                $.each(result.instructors,function (i,item) {&#45;&#45;%>-->
+<!--        <%&#45;&#45;                    $("#instructorId").append("<option value="+item.jobId+">"+item.teacherName+"</option>");&#45;&#45;%>-->
+<!--        <%&#45;&#45;                })&#45;&#45;%>-->
+<!--        <%&#45;&#45;            }&#45;&#45;%>-->
+<!--        <%&#45;&#45;        });&#45;&#45;%>-->
+<!--    </script>-->
+</head>
+
+<body>
+<div id="main">
+
+    <section id="content">
+        <div id="topbar" class="affix">
+            <ol class="breadcrumb">
+                <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+                <li class="active">编辑学生</li>
+            </ol>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-10 col-lg-11 center-column">
+                    <form th:action="@{/student/updateStudent}" method="post" class="cmxform">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">编辑学生</div>
+                                <div class="panel-btns pull-right margin-left">
+                                    <a th:href="@{/student/findStudentByStudentId}" class="btn btn-default btn-gradient dropdown-toggle"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="input-group-addon">学生ID</span>
+                                            <input type="text" name="studentId" readonly th:value="${s?.studentId}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="input-group-addon">学生姓名</span>
+                                            <input type="text" name="studentName" readonly th:value="${s?.studentName}" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="input-group-addon">专业ID</span>
+                                            <input type="text" name="majorId" readonly th:value="${s?.majorId }" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="input-group-addon">系别ID</span>
+                                            <input type="text" name="deptId" readonly th:value="${s?.deptId }" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="input-group-addon">缺勤次数</span>
+                                            <input type="text" name="absence" th:value="${s?.absence }" class="form-control">
+                                        </div>
+                                    </div>
+
+
+<!--                                    <%&#45;&#45;                                    <div class="form-group">&#45;&#45;%>-->
+<!--                                    <%&#45;&#45;                                        <div class="input-group"> <span class="input-group-addon">辅导员</span>&#45;&#45;%>-->
+<!--                                        <%&#45;&#45;                                            <input type="text" name="instructorId" value="${c.instructorId}" class="form-control">&#45;&#45;%>-->
+<!--                                        <%&#45;&#45;                                        </div>&#45;&#45;%>-->
+<!--                                    <%&#45;&#45;                                    </div>&#45;&#45;%>-->
+<!--                                    <%&#45;&#45;                                    <div class="form-group">&#45;&#45;%>-->
+<!--                                    <%&#45;&#45;                                        <div class="input-group"><span class="input-group-addon">备注</span>&#45;&#45;%>-->
+<!--                                        <%&#45;&#45;                                            <input type="text" name="bz" value="${c.bz}" class="form-control">&#45;&#45;%>-->
+<!--                                        <%&#45;&#45;                                        </div>&#45;&#45;%>-->
+<!--                                    <%&#45;&#45;                                    </div>&#45;&#45;%>-->
+                                </div>
+<!--                                <%&#45;&#45;<div class="form-group col-md-12">-->
+<!--                                <textarea style="width:100%;height:150px;"></textarea>-->
+<!--                            </div>&#45;&#45;%>-->
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <input type="submit" value="提交" class="submit btn btn-blue">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End: Content -->
+</div>
+
+</body>
+</html>

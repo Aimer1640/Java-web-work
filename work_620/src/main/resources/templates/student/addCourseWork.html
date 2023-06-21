@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmls:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加新学生</title>
+    <!-- Core CSS  -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/glyphicons.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/pages.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/plugins.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}">
+
+
+    <!-- Theme CSS -->
+
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script>
+        $.ajax({
+            url: "${basePath}/officer/findMajorByDeptId?deptId=407",
+            type: "post",
+            //定义回调响应的数据格式为JSON字符串,该属性可以省略
+            dataType: "json",
+            //成功响应的结果
+            success: function (result) {
+                $.each(result,function (i,item) {
+                    $("#majorId").append("<option value="+item.majorId+">"+item.majorName+"</option>");
+                })
+            }
+        });
+
+    </script>
+</head>
+
+<body>
+
+<!-- Start: Main -->
+<div id="main">
+    <!-- Start: Content -->
+    <section id="content">
+        <div id="topbar" class="affix">
+            <ol class="breadcrumb">
+                <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+                <li class="active">提交作业</li>
+            </ol>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-10 col-lg-11 center-column">
+                    <form th:action="@{/coursework/addCourseWork}" enctype="multipart/form-data" method="post" class="cmxform">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">提交作业</div>
+                                <div class="panel-btns pull-right margin-left">
+                                    <a href="news_list.html" class="btn btn-default btn-gradient dropdown-toggle"><span
+                                            class="glyphicon glyphicon-chevron-left"></span></a>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <div class="input-group"><span class="input-group-addon">提交ID</span>
+                                            <input type="text" name="uploadId" th:value="${c?.uploadId}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="input-group-addon">作业ID</span>
+                                            <input type="text" name="projectId" th:value="${c?.projectId}" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="input-group-addon">学生ID</span>
+                                            <input type="text" name="studentId" th:value="${c?.studentId}" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group"> <span class="input-group-addon">作业文件</span>
+
+                                            <input type="file" name=file th:value="${c?.uploadFile}" class="form-control">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <input type="submit" value="提交" class="submit btn btn-blue">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+    </section>
+    <!-- End: Content -->
+</div>
+
+</body>
+</html>
