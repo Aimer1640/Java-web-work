@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmls:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>后台管理界面</title>
+    <meta name="description" content="这是后台管理主页">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+
+    <link rel="icon" type="image/png" th:href="@{../img/lysf.ico}">
+    <link rel="stylesheet" th:href="@{/css/amazeui.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/pagination.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+
+<body style="overflow:hidden;" >
+
+<div id="ref_page" style="height: 500px;">
+    <div class="teacher_search_title am-panel am-panel-default">
+        <div class="am-panel-bd">
+            <div class="am-cf">
+                <div class=" am-fl"><span class="tpl-content-page-title">教师列表</span></div>
+                <div class="am-fr" style="width: 180px;">
+                    <div class="am-input-group am-input-group-sm">
+
+            <span class="am-input-group-btn" style="width: 30%;">
+				        <a th:href="@{/teacher/addTeacher}"><button id="searchTeacher" class="am-btn am-btn-default" type="button">添加</button></a>
+			</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="teacher_search_title am-panel am-panel-default">
+        <div class="am-panel am-panel-default">
+            <div class="am-panel-bd am-scrollable-horizontal">
+                <table class="am-table am-table-centered am-table-striped am-table-hover">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>教师工号</th>
+                        <th>教师姓名</th>
+                        <th>专业ID</th>
+                        <th>系别ID</th>
+                        <th>教职类别</th>
+
+                        <th>操作</th>
+                    </tr>
+
+                    </thead>
+                    <!-- 添加分页链接 -->
+                    <!-- 2040706101_杨艾琳 -->
+
+                    <tbody id="chooseBody">
+                    <tr th:each ="t,iterStat:${teacherList}">
+                        <form name='form'>
+                            <input type="hidden" name="id" value="${t.teacherId}}" />
+                            <td th:text="${iterStat.index+1}">index</td>
+                            <td th:text="${t.teacherId}"></td>
+                            <td th:text="${t.teacherName}"></td>
+                            <td th:text="${t.majorId}"></td>
+                            <td th:text="${t.deptId}"></td>
+                            <td th:text="${t.role}"></td>
+
+                        <td>
+                            <a th:href="@{/teacher/findTeacherByTeacherId(teacherId=${t.teacherId})}">修改</a>
+                            <a onclick="return confirm('确定要删除吗？');" th:href="@{/teacher/deleteTeacherById(teacherId=${t.teacherId})}">删除</a>
+                        </td>
+
+
+                    </form>
+
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <footer class="am-panel-footer" style="height: 50px;">
+                <div class="am-fr">
+                    <p align="center">
+                    <div align="center" style="margin-top: 15px;">
+                        <a th:href="@{/teacher/findAllTeachers(currentPage=${pageInfo.getFirstPage()})}" >首页</a>
+                        <a th:if="${pageInfo.hasPreviousPage()} == true" th:href="@{/teacher/findAllTeachers(currentPage=${pageInfo.getPrePage()})}"  >上一页</a>
+                        <a th:href="@{'/teacher/findAllTeachers?currentPage=' + ${i}}"  th:each="i :${#numbers.sequence(pageInfo.firstPage, pageInfo.lastPage)}" th:text="${i}+' '" th:class="${pageInfo.getPageNumber() == i}? 'page-item active' :'page-item' "></a>
+                        <a th:if="${pageInfo.hasNextPage()} == true" th:href="@{/teacher/findAllTeachers(currentPage=${pageInfo.getNextPage()})}" >下一页</a>
+                        <a th:href="@{/teacher/findAllTeachers(currentPage=${pageInfo.getLastPage()})}" >尾页</a>
+                        <a class="allpage"><b th:text="'共 '+${pageInfo.getPages()}+ ' 页'"></b></a>
+                    </div>
+
+                    </p>
+                    <div id="news-Pagination-1"></div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>
