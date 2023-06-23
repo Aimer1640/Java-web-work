@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmls:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background: url('https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg') no-repeat;
+            background-size: 100% 130%;
+        }
+
+        #login_box {
+            width: 40%;
+            height: 400px;
+            background-color: #00000060;
+            margin: auto;
+            margin-top: 10%;
+            text-align: center;
+            border-radius: 10px;
+            padding: 50px 50px;
+        }
+
+        h2 {
+            color: #ffffff90;
+            margin-top: 5%;
+        }
+
+        #input-box {
+            margin-top: 5%;
+        }
+
+        span {
+            color: #fff;
+        }
+
+        input {
+            border: 0;
+            width: 60%;
+            font-size: 15px;
+            color: #fff;
+            background: transparent;
+            border-bottom: 2px solid #fff;
+            padding: 5px 10px;
+            outline: none;
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 50px;
+            width: 60%;
+            height: 30px;
+            border-radius: 10px;
+            border: 0;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+            font-size: 15px;
+            background-image: linear-gradient(to right, #30cfd0, #330867);
+        }
+        #btn_submit{
+            width: 350px;
+            height: 45px;
+            margin: 0px 4px;
+            border-radius: 8px; /*圆角矩形*/
+            text-indent: 5px; /*里面隐形的字体首行缩进*/
+            margin: 5px auto;
+        }
+
+
+
+        #sign_up {
+            margin-top: 45%;
+            margin-left: 60%;
+        }
+
+        a {
+            color: #b94648;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+
+    <script type="text/javascript" th:src="@{js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript">
+        //刷新验证码
+        function refresh(){
+            loginForm.imgValidate.src =encodeURI("code.jsp?id="+new Date());
+        }
+    </script>
+</head>
+
+<body>
+
+<!--<form th:action="@{/login}" class="cmxform" id="altForm" method="post">-->
+<form th:action="@{/user/login}" method="post" id="altForm">
+    <div id="login_box">
+        <h2>LOGIN</h2>
+        <div id="input_box">
+            <input class="inputinfo" name="account" type="text" autocomplete="off" placeholder="请输入用户名">
+        </div>
+        <div class="input_box">
+            <input class="inputinfo" name="password" type="password" autocomplete="off" placeholder="请输入密码">
+        </div>
+<!--        <%&#45;&#45;    <div class="input_box">&#45;&#45;%>-->
+<!--        <%&#45;&#45;      <input type="text" name="code" placeholder="请输入验证码" style="width: 280px;">&#45;&#45;%>-->
+<!--        <%&#45;&#45;      <img name="imgValidate" src="code.jsp" onclick="refresh()">&#45;&#45;%>-->
+
+<!--        <%&#45;&#45;    </div>&#45;&#45;%>-->
+        <div class="input-input_box">
+            <input class="inputinfo" placeholder="角色" style="width:200px">
+            <select name="roleId"  style="height:34px;">
+                <option value="0" th:text="管理员登录"></option>
+                <option value="1" th:text="教师登录"></option>
+                <option value="2" th:text="学生登录"></option>
+            </select>
+        </div>
+
+        <button id="btn_submit" th:text="登录" type="submit"  style="width: 270px;height: 25px"/>
+        <input  type="submit"  />
+
+        <div><a href="register.jsp">还没有账号？点我注册</a> </div>
+        <div class="form-group" style="font-size:18px;color: #fe561f">
+            <span th:text="${msg}"></span>
+        </div>
+        <div th:if="${param.error}">
+            用户名或密码错误</div>
+        <div th:if="${param.logout}">
+            系统登出</div>
+
+    </div>
+</form>
+
+</body>
+</html>
