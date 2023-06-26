@@ -51,10 +51,10 @@ public class DumpSQLService {
     //开启定时任务支持
     //每分钟备份一次
 
-//    @Scheduled(cron = "0 * * * * *")
-//    public void dump() throws Exception {
-//        String currentDate=(new SimpleDateFormat("yyyy-MM-dd_hh_mm_ss")).format(new Date());
-//        dataBaseDump("localhost","3306","root","root","javawebwork",currentDate);
-//
-//    }
+    @Scheduled(cron = "0 * * * * *")
+    public void dump() throws Exception {
+        String currentDate=(new SimpleDateFormat("yyyy-MM-dd_hh_mm_ss")).format(new Date());
+        dataBaseDump("localhost","3306","root","root","javawebwork",currentDate);
+
+    }
 }
