@@ -1,0 +1,107 @@
+<view wx:if="{{role==0}}">管理员
+  <view class="container">
+  已发布作业：
+    <view class='widget'>
+      <text class='column'>作业编号</text>
+      <text class='column'>作业名称</text>
+      <text class='column'>发布人</text>
+      <text class='link-column'>作业要求</text>
+    </view>
+  <scroll-view scroll-y="true">
+    <view>
+      <block wx:for='{{list}}'>
+      <view class='widget'> 
+        <text class='column'>{{item.projectId}}</text>
+        <text class='column'>{{item.projectName}}</text>
+        <text class='column'>{{item.projectTeacher}}</text>
+        <text class='column'>{{item.projectDemand}}</text>
+        <view class='link-column'>
+          <text class='link' bindtap='deleteProject' data-areaid='{{item.projectId}}' data-areaname='{{item.projectName}}' data-index='{{index}}'>删除</text>  
+        </view>
+        </view>      
+      </block>
+    </view>
+  </scroll-view>
+  已提交作业：
+  <view class='widget'>
+      <text class='column'>作业编号</text>
+      <text class='column'>提交人</text>
+      <text class='column'>作业名称</text>
+      <!-- <text class='link-column'>作业要求</text> -->
+  </view>
+  <scroll-view scroll-y="true">
+    <view>
+      <block wx:for='{{courseworklist}}'>
+      <view class='widget'> 
+        <text class='column'>{{item.projectId}}</text>
+        <text class='column'>{{item.studentId}}||</text>
+        <text class='column'>{{item.uploadFile}}</text>
+        <view class='link-column'>
+          <text class='link' bindtap='deleteCoursework' data-areaid='{{item.uploadId}}' data-areaname='{{item.projectId}}' data-index='{{index}}'>打回</text>  
+        </view>
+        </view>      
+      </block>
+    </view>
+  </scroll-view>
+</view>
+  
+</view>
+
+<view wx:if="{{role==1}}">教师
+  <!-- <button class="add" type='primary' bindtap='addProject'>发布作业</button> -->
+  <view class="container">
+    <view class='widget'>
+      <text class='column'>作业编号</text>
+      <text class='column'>提交人</text>
+      <text class='column'>作业文件</text>
+      <!-- <text class='link-column'>作业要求</text> -->
+  </view>
+  <scroll-view scroll-y="true">
+    <view>
+      <block wx:for='{{courseworklist}}'>
+      <view class='widget'> 
+        <text class='column'>{{item.projectId}}</text>
+        <text class='column'>{{item.studentId}}||</text>
+        <text class='column'>{{item.uploadFile}}</text>
+        <view class='link-column'>
+          <text class='link' bindtap='deleteCoursework' data-areaid='{{item.uploadId}}' data-areaname='{{item.projectId}}' data-index='{{index}}'>打回</text>  
+        </view>
+        </view>      
+      </block>
+    </view>
+  </scroll-view>
+  </view>
+</view>  
+
+<view wx:if="{{role==2}}">学生
+  <!-- <button type='primary' bindtap="addCoursework">提交作业</button> -->
+  <view class="container">
+    <view class='widget'>
+      <text class='column'>作业编号</text>
+      <text class='column'>作业名称</text>
+      <text class='column'>发布人</text>
+      <text class='link-column'>作业要求</text>
+
+    </view>
+    <scroll-view scroll-y="true">
+      <view>
+        <block wx:for='{{list}}'>
+        <view class='widget'> 
+          <text class='column'>{{item.projectId}}</text>
+          <text class='column'>{{item.projectName}}</text>
+          <text class='column'>{{item.projectTeacher}}</text>
+          <text class='column'>{{item.projectDemand}}</text>
+        <view class='link-column'>
+          <!-- <navigator class='link' url='../operation/operation?id={{item.id}}'>编辑</navigator> | -->
+          <!-- <text class='link' bindtap='deleteCoursework' data-areaid='{{item.id}}' data-areaname='{{item.name}}' data-index='{{index}}'>删除</text>   -->
+        </view>
+          </view>      
+         </block>
+      </view>
+    </scroll-view>
+  </view>
+
+</view>
+
+
+
