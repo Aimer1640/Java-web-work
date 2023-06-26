@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>后台管理界面</title>
+    <meta name="description" content="这是后台管理主页">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+
+<!--    <link rel="icon" type="image/png" th:href="@{../img/lysf.ico}">-->
+    <link rel="stylesheet" th:href="@{/css/amazeui.min.css}" />
+<!--    <link rel="stylesheet" th:href="@{/css/pagination.css}">-->
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+
+<body data-type="index">
+
+<header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand"><strong>广软教学管理系统<span sec:authorize="hasRole('ADMIN')">(管理员端)</span><span sec:authorize="hasRole('TEACHER')">(教师端)</span><span sec:authorize="hasRole('STUDENT')">(学生端)</span></strong><div class="pull-right header-btns">
+        <a class="user">您好，用户<span sec:authentication="name"></span></a>
+        <!--        <a href="${baseurl}/logout" class="btn btn-default btn-gradient" type="button">退出</a>-->
+    </div></div>
+
+</header>
+
+<div class="tpl-page-container tpl-page-header-fixed">
+
+    <div class="tpl-left-nav tpl-left-nav-hover">
+        <div class="tpl-left-nav-title">功能列表</div>
+        <div class="tpl-left-nav-list">
+            <div sec:authorize="hasRole('ADMIN')">
+                <ul class="tpl-left-nav-menu">
+                    <li class="tpl-left-nav-item"><a th:href="@{/student/findAllStudents}"
+                                                     class="nav-link active link_a" target="childp"> <i class="am-icon-home"></i> <span>查看学生</span>
+                    </a></li>
+                    <li class="tpl-left-nav-item"><a th:href="@{/student/addStudent}"
+                                                     class="nav-link link_a" target="childp"> <i class="am-icon-check-square-o"></i> <span>添加学生</span>
+                    </a></li>
+                    <li class="tpl-left-nav-item"><a th:href="@{/teacher/findAllTeachers}"
+                                                     class="nav-link link_a" target="childp"> <i class="am-icon-home"></i> <span>查看教师</span>
+                    </a></li>
+                    <li class="tpl-left-nav-item"><a th:href="@{/teacher/addTeacher}"
+                                                     class="nav-link link_a" target="childp"> <i class="am-icon-check-square-o"></i> <span>添加教师</span>
+                    </a></li>
+                    <li class="tpl-left-nav-item"><a th:href="@{/project/findAllProject}"
+                                                     class="nav-link link_a" target="childp"> <i class="am-icon-check-square-o"></i> <span>查看已发布作业</span>
+                    </a></li>
+                    <li class="tpl-left-nav-item"><a th:href="@{/coursework/findAllCourseWork}"
+                                                     class="nav-link link_a" target="childp"> <i class="am-icon-check-square-o"></i> <span>查看已提交作业</span>
+                    </a></li>
+
+                    <li class="tpl-left-nav-item"><a href="logout"
+                                                     class="nav-link tpl-left-nav-link-list link_a"> <i
+                            class="am-icon-download"></i> <span>退出登录</span>
+                    </a></li>
+                </ul>
+            </div>
+
+            <div sec:authorize="hasRole('TEACHER')">
+
+                <ul class="tpl-left-nav-menu">
+                    <li class="tpl-left-nav-item"><a th:href="@{/student/findAllStudents}"
+                                                     class="nav-link active link_a" target="childp"> <i class="am-icon-home"></i> <span>查看学生</span>
+                    </a></li>
+                    <li class="tpl-left-nav-item"><a th:href="@{/student/absenceStudent}"
+                                                     class="nav-link link_a" target="childp"> <i class="am-icon-check-square-o"></i> <span>登记考勤</span>
+                    </a></li>
+                    <li class="tpl-left-nav-item"><a th:href="@{/project/addProject}"
+                                                     class="nav-link link_a" target="childp"> <i class="am-icon-check-square-o"></i> <span>发布作业</span>
+                    </a></li>
+                    <li class="tpl-left-nav-item"><a th:href="@{/project/findAllProject}"
+                                                     class="nav-link link_a" target="childp"> <i class="am-icon-check-square-o"></i> <span>查看已发布作业</span>
+                    </a></li>
+                    <li class="tpl-left-nav-item"><a th:href="@{/coursework/findAllCourseWork}"
+                                                     class="nav-link link_a" target="childp"> <i class="am-icon-check-square-o"></i> <span>查看已提交作业</span>
+                    </a></li>
+
+                    <li class="tpl-left-nav-item"><a href="logout"
+                                                     class="nav-link tpl-left-nav-link-list link_a"> <i
+                            class="am-icon-download"></i> <span>退出登录</span>
+                    </a></li>
+                </ul>
+
+            </div>
+
+            <div sec:authorize="hasRole('STUDENT')">
+
+                <ul class="tpl-left-nav-menu">
+
+                    <li class="tpl-left-nav-item"><a th:href="@{/project/findAllProject}"
+                                                     class="nav-link active link_a" target="childp"> <i class="am-icon-check-square-o"></i> <span>查看已发布作业</span>
+                    </a></li>
+                    <li class="tpl-left-nav-item"><a th:href="@{/coursework/addCourseWork}"
+                                                     class="nav-link link_a" target="childp"> <i class="am-icon-check-square-o"></i> <span>提交作业</span>
+                    </a></li>
+                    <li class="tpl-left-nav-item"><a th:href="@{/coursework/findAllCourseWork}"
+                                                     class="nav-link link_a" target="childp"> <i class="am-icon-check-square-o"></i> <span>查看已提交作业</span>
+                    </a></li>
+
+                    <li class="tpl-left-nav-item"><a href="logout"
+                                                     class="nav-link tpl-left-nav-link-list link_a"> <i
+                            class="am-icon-download"></i> <span>退出登录</span>
+                    </a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <!--begin  -->
+    <div class="tpl-content-wrapper">
+<!--        <a th:href="@{/student/findAllStudents}">确定</a>-->
+<!--        <div th:insert="student/showAllStudents :: students"></div>-->
+        <iframe id="iframepage" name="childp" th:src="@{/student/findAllStudents}" style="width: 100%;height: 850px;" seamless></iframe>
+    </div>
+    <!--end  -->
+
+</div>
+<div>
+
+</div>
+
+</body>
+</html>
