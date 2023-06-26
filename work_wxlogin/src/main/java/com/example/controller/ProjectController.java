@@ -14,10 +14,16 @@ public class ProjectController {
     @Resource
     private ProjectMapper projectMapper;
 
-    @RequestMapping("/findAllProject")
+    @RequestMapping("/findAllProjects")
     public List<Project> findAllProject(){
         // 从数据库中查询出信息
         List<Project> projects=projectMapper.findAllProject();
         return projects;
+    }
+
+    @RequestMapping("/deleteProject")
+    public int delete(String projectId){
+        System.out.println(projectId);
+        return projectMapper.deleteProjectById(projectId);
     }
 }
